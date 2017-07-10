@@ -1,4 +1,4 @@
-package com.example.prashant.contactapp.Fragments;
+package com.example.prashant.contactapp.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,15 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.prashant.contactapp.Adapters.ContactListAdapter;
-import com.example.prashant.contactapp.Objects.Contacts;
-import com.example.prashant.contactapp.Objects.GsonResponse;
+import com.example.prashant.contactapp.adapters.ContactListAdapter;
+import com.example.prashant.contactapp.objects.Contacts;
+import com.example.prashant.contactapp.objects.ContactsHelper;
+import com.example.prashant.contactapp.objects.GsonResponse;
 import com.example.prashant.contactapp.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.prashant.contactapp.objects.ContactsHelper.contactList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,7 +47,7 @@ public class ContactFragment extends Fragment {
     public RecyclerView mRecyclerView;
     public ContactListAdapter mAdapter;
     public LinearLayoutManager linearLayoutManager;
-    public ArrayList<Contacts> mContactList = new ArrayList<>();
+
 
     /**
      * Use this factory method to create a new instance of
@@ -81,7 +84,7 @@ public class ContactFragment extends Fragment {
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_contact);
         linearLayoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
 
-        mAdapter = new ContactListAdapter(mContactList, getContext());
+        mAdapter = new ContactListAdapter(contactList, getContext());
 
         new fetchContactTask().execute();
 
@@ -94,20 +97,11 @@ public class ContactFragment extends Fragment {
         protected Void doInBackground(Void... params) {
 
             try {
-                Contacts contacts = null;
                 Gson gson = new Gson();
-                List<Contacts> contactsList = gson.fromJson(GsonResponse.sampleJson, new TypeToken<ArrayList<Contacts>>() {
+                contactList = gson.fromJson(GsonResponse.sampleJson, new TypeToken<ArrayList<Contacts>>() {
                 }.getType());
 
-                int length = String.valueOf(contactsList).length();
-                Log.d(TAG, " Contact length is - " + length);
-
-                for (int i = 0; i < contactsList.size(); i++) {
-                    contacts = new Contacts(contactsList.get(i).getName(),
-                            contactsList.get(i).getNumber(),
-                            contactsList.get(i).getId());
-                    mContactList.add(contacts);
-                }
+                Log.d(TAG, " Contact length is - " + contactList.size());
             } catch (Exception e) {
                 Log.e(TAG, "ERROR " + e);
                 return null;
@@ -119,7 +113,7 @@ public class ContactFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             mRecyclerView.setLayoutManager(linearLayoutManager);
-            mAdapter = new ContactListAdapter(mContactList, getContext());
+            mAdapter = new ContactListAdapter(contactList, getContext());
             mRecyclerView.setAdapter(mAdapter);
         }
     }

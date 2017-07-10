@@ -1,6 +1,8 @@
-package com.example.prashant.contactapp.Adapters;
+package com.example.prashant.contactapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,8 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.prashant.contactapp.Objects.Contacts;
+import com.example.prashant.contactapp.objects.Contacts;
 import com.example.prashant.contactapp.R;
+import com.example.prashant.contactapp.ui.ContactDetailActivity;
 
 import java.util.ArrayList;
 
@@ -24,7 +27,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     public ContactListAdapter(ArrayList<Contacts> ContactList, Context context) {
         this.mContactList = ContactList;
         this.mContext = context;
-        //Log.d(TAG, " Movie adapter MovieList " + ContactList.size() + " " + mContactList.size());
+        Log.d(TAG, " Movie adapter MovieList " + ContactList.size() + " " + mContactList.size());
     }
 
     private String getItem(int position) {
@@ -41,6 +44,13 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Position " + getItem(vh.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+
+                final Bundle args = new Bundle();
+                args.putString("id", getItem(vh.getAdapterPosition()));
+                Intent intent = new Intent(v.getContext(), ContactDetailActivity.class);
+                intent.putExtras(args);
+                v.getContext().startActivity(intent);
+                Log.d(TAG, "detail intent send");
             }
         });
         return vh;

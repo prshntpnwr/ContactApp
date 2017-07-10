@@ -1,4 +1,4 @@
-package com.example.prashant.contactapp;
+package com.example.prashant.contactapp.ui;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,16 +11,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
-
-import com.example.prashant.contactapp.Fragments.ContactFragment;
-import com.example.prashant.contactapp.Fragments.MessageFragment;
+import com.example.prashant.contactapp.R;
+import com.example.prashant.contactapp.fragments.ContactFragment;
+import com.example.prashant.contactapp.fragments.MessageFragment;
 
 public class MainActivity extends AppCompatActivity {
 

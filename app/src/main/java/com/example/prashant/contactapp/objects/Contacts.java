@@ -1,12 +1,7 @@
-package com.example.prashant.contactapp.Objects;
+package com.example.prashant.contactapp.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
-
-import java.util.List;
 
 public class Contacts implements Parcelable {
 
