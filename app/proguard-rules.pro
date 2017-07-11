@@ -15,3 +15,9 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-dontobfuscate
+
+# Twilio Client
+-keep class com.twilio.** { *; }
+-keep class com.github.bumptech.glide.** { *; }
+-keep class com.google.code.gson.** { *; }

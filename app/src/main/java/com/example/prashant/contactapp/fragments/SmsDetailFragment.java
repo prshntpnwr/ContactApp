@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,21 @@ import com.example.prashant.contactapp.R;
 import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
 import com.example.prashant.contactapp.objects.ContactsHelper;
 
-public class SmsDetailFragment extends Fragment{
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+
+public class SmsDetailFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
 
@@ -67,37 +82,60 @@ public class SmsDetailFragment extends Fragment{
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = ContactsHelper.getContact(id).getName();
-                String number = ContactsHelper.getContact(id).getNumber();
-
-                String msg = editText.getText().toString();
-
-                String date = "11/07/2017";
-                String time = "12 pm";
-
-                saveToDb(view, name, number, msg, date, time);
+                sendSms(view, id);
             }
         });
     }
 
-//    private void sendSms(String name, String num, String msgStr, String id) {
-//
-//        String ACCOUNT_SID = getContext().getResources().getString(R.string.ACCOUNT_SID);
-//        String AUTH_TOKEN = getContext().getResources().getString(R.string.AUTH_TOKEN);
-//
-//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-//
-//        Notification notification = Notification
-//                .creator(SERVICE_SID)
-//                .setBody(msgStr)
-//                .setIdentity(num)
-//                .create();
-//        //System.out.println(message.getSid());
-//
-//
-//    }
+    private void sendSms(final View view, String id) {
 
-    private void saveToDb(View view, String name, String number, String msg, String date, String time) {
+        final String name = ContactsHelper.getContact(id).getName();
+        final String numTo = ContactsHelper.getContact(id).getNumber();
+        final String numFrom = getActivity().getResources().getString(R.string.twilio_number);
+
+        final String body = editText.getText().toString();
+
+        String ACCOUNT_SID = getContext().getResources().getString(R.string.ACCOUNT_SID);
+        String AUTH_TOKEN = getContext().getResources().getString(R.string.AUTH_TOKEN);
+
+        String base64EncodedCredentials = "Basic " + Base64.encodeToString(
+                (ACCOUNT_SID + ":" + AUTH_TOKEN).getBytes(), Base64.NO_WRAP
+        );
+
+        Map<String, String> data = new HashMap<>();
+        data.put("From", numFrom);
+        data.put("To", numTo);
+        data.put("Body", body);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.twilio.com/2010-04-01/")
+                .build();
+
+        TwilioApi api = retrofit.create(TwilioApi.class);
+
+        api.sendMessage(ACCOUNT_SID, base64EncodedCredentials, data).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Log.d("TAG", "onResponse->success");
+                    saveToDb(view, name, numTo, body);
+                } else {
+                    Log.d("TAG", "onResponse->failure");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("TAG", "onFailure");
+            }
+        });
+
+    }
+
+    private void saveToDb(View view, String name, String number, String msg) {
+        String date = "11/07/2017";
+        String time = "12 pm";
+
         ContentValues values = new ContentValues();
         values.put(MessageEntry.KEY_ID, id);
         values.put(MessageEntry.KEY_NAME, name);
@@ -114,4 +152,13 @@ public class SmsDetailFragment extends Fragment{
         Log.d(TAG, "DB ENTRY - " + "id - " + id + " name - " + name + " number - " + number + "OPT - " + msg + " date " + date + " time - " + time);
     }
 
+    interface TwilioApi {
+        @FormUrlEncoded
+        @POST("Accounts/{ACCOUNT_SID}/Messages")
+        Call<ResponseBody> sendMessage(
+                @Path("ACCOUNT_SID") String accountSId,
+                @Header("Authorization") String signature,
+                @FieldMap Map<String, String> metadata
+        );
+    }
 }

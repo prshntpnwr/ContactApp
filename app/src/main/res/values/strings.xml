@@ -11,7 +11,8 @@
     <string name="sms_hint">Please Type OTP</string>
     <string name="sms_button">Send</string>
 
-    <string name="ACCOUNT_SID"></string>
-    <string name="AUTH_TOKEN"></string>
+    <string name="ACCOUNT_SID">ACd84519ad2f0af49f0416c0f2615133b7</string>
+    <string name="AUTH_TOKEN">f7dc2faaa958db65ba0877f005c8b5d5</string>
+    <string name="twilio_number">+13239978674</string>
 
 </resources>
