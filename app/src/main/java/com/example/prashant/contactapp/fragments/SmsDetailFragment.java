@@ -20,6 +20,7 @@ import com.example.prashant.contactapp.objects.ContactsHelper;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -77,7 +78,10 @@ public class SmsDetailFragment extends Fragment {
 
     private void sendOtpTask(final String id) {
 
-        editText.setText(getActivity().getString(R.string.otp_message));
+        Random rnd = new Random();
+        int n = 100000 + rnd.nextInt(900000);
+
+        editText.setText(getActivity().getString(R.string.otp_message) + " " + n);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
