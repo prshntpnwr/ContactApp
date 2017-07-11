@@ -68,8 +68,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     public void onBindViewHolder(MessageListAdapter.ViewHolder holder, int position) {
         holder.name.setText(mCursor.getString(MessageLoader.Query.KEY_NANME));
 
-        holder.time.setText(mCursor.getString(MessageLoader.Query.KEY_TIME) + " at " +
-                mCursor.getString(MessageLoader.Query.KEY_DATE) );
+        holder.time.setText(mCursor.getString(MessageLoader.Query.KEY_DATE)  + " on " +
+                mCursor.getString(MessageLoader.Query.KEY_TIME));
     }
 
     @Override

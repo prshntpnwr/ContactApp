@@ -76,7 +76,7 @@ public class MessageDetailFragment extends Fragment {
 
             optUser.setText(messageDetails.getName());
             optText.setText(messageDetails.getOpt());
-            optTime.setText(messageDetails.getTime() + " on " + messageDetails.getDate());
+            optTime.setText(messageDetails.getDate() + " on " + messageDetails.getTime());
 
         } catch (Exception e) {
             Log.d(TAG, "ERROR " + e);

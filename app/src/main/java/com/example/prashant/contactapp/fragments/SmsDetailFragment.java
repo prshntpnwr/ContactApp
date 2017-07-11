@@ -1,5 +1,6 @@
 package com.example.prashant.contactapp.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -18,9 +19,14 @@ import com.example.prashant.contactapp.R;
 import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
 import com.example.prashant.contactapp.objects.ContactsHelper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.TimeZone;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -86,7 +92,8 @@ public class SmsDetailFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendSms(view, id);
+                //sendSms(view, id);
+                saveToDb("Tony Stark", "9012168161", editText.getText().toString());
             }
         });
     }
@@ -123,14 +130,12 @@ public class SmsDetailFragment extends Fragment {
                 if (response.isSuccessful()) {
                     Log.d("TAG", "onResponse->success");
 
-                    Snackbar.make(view, "OTP Send to " + name + " ... ",
-                            Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    snackBar(view, "OTP Send to " + name + " ... ");
 
-                    saveToDb(name, numTo, body);
+                    //saveToDb(name, numTo, body);
                 } else {
                     Log.d("TAG", "onResponse->failure " + response.toString());
-                    Snackbar.make(view, "Error Sending Message",
-                            Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    snackBar(view, "Error Sending Message");
                 }
             }
 
@@ -143,8 +148,13 @@ public class SmsDetailFragment extends Fragment {
     }
 
     private void saveToDb(String name, String number, String msg) {
-        String date = "11/07/2017";
-        String time = "12 pm";
+        @SuppressLint("SimpleDateFormat")
+        String date = new SimpleDateFormat("dd / MM / yyyy")
+                .format(Calendar.getInstance().getTime());
+
+        @SuppressLint("SimpleDateFormat")
+        String time = new SimpleDateFormat("HH:mm a")
+                .format(Calendar.getInstance().getTime());
 
         ContentValues values = new ContentValues();
         values.put(MessageEntry.KEY_ID, id);
@@ -157,6 +167,11 @@ public class SmsDetailFragment extends Fragment {
         getActivity().getContentResolver().insert(MessageEntry.CONTENT_URI, values);
 
         Log.d(TAG, "DB ENTRY - " + "id - " + id + " name - " + name + " number - " + number + "OPT - " + msg + " date " + date + " time - " + time);
+    }
+
+    private void snackBar(View view, String message) {
+        Snackbar.make(view, message,
+                Snackbar.LENGTH_LONG).setAction("Action", null).show();
     }
 
     interface TwilioApi {
