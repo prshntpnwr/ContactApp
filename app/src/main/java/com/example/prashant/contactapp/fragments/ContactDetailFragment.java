@@ -1,10 +1,9 @@
 package com.example.prashant.contactapp.fragments;
 
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,11 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.prashant.contactapp.R;
 import com.example.prashant.contactapp.objects.ContactsHelper;
+import com.example.prashant.contactapp.ui.SmsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +32,8 @@ public class ContactDetailFragment extends Fragment {
     private FloatingActionButton fab;
     private LinearLayoutManager mLayoutManager;
     private ImageView mBackdrop;
+
+    public static String id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +55,7 @@ public class ContactDetailFragment extends Fragment {
 
         setupToolbar();
 
-        String id = getActivity().getIntent().getStringExtra("id");
+        id = getActivity().getIntent().getStringExtra("id");
         Log.d(TAG, "intent receive from adapter is " + id);
 
         getContactFromID(id);
@@ -111,8 +112,14 @@ public class ContactDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Snackbar.make(view, "Sending...", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Sending...", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                final Bundle args = new Bundle();
+                args.putString("id", id);
+                Intent intent = new Intent(view.getContext(), SmsActivity.class);
+                intent.putExtras(args);
+                view.getContext().startActivity(intent);
+                Log.d(TAG, "detail intent send");
 
             }
         });

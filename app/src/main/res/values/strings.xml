@@ -5,4 +5,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="sms_hint">Please Type OTP</string>
+    <string name="sms_button">Send</string>
+
+    <string name="ACCOUNT_SID"></string>
+    <string name="AUTH_TOKEN"></string>
+
 </resources>

@@ -11,4 +11,6 @@
     <!--contacts-->
     <dimen name="padding">16dp</dimen>
 
+    <dimen name="detail_toolbar_margin">24dp</dimen>
+
 </resources>
