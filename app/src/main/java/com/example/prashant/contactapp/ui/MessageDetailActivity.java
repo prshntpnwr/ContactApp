@@ -5,23 +5,23 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.prashant.contactapp.R;
-import com.example.prashant.contactapp.fragments.SmsDetailFragment;
+import com.example.prashant.contactapp.fragments.MessageDetailFragment;
 
-public class SmsActivity extends AppCompatActivity {
+public class MessageDetailActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message);
+        setContentView(R.layout.activity_message_detail);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.sms_detail_container, new SmsDetailFragment())
+                    .replace(R.id.message_detail_container, new MessageDetailFragment())
                     .commit();
 
-            Log.d(TAG, "Transition happened");
+            Log.d(TAG, "Transition to MessageDetailFragment");
         }
     }
 }

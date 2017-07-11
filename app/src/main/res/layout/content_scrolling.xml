@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:padding="@dimen/padding"
             android:textColor="@color/primary_text"
-            android:textSize="24sp" />
+            android:textSize="@dimen/text_large" />
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -30,9 +30,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.SmsActivity"
+            android:theme="@style/SmsTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.MessageDetailActivity"
             android:theme="@style/SmsTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +53,7 @@
             android:name=".data.MessageProvider"
             android:authorities="com.example.prashant.contactapp"
             android:exported="false" />
+
     </application>
 
 </manifest>

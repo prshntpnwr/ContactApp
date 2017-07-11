@@ -1,12 +1,20 @@
 package com.example.prashant.contactapp.fragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.prashant.contactapp.R;
+import com.example.prashant.contactapp.adapters.MessageListAdapter;
+import com.example.prashant.contactapp.data.MessageLoader;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,7 +24,8 @@ import com.example.prashant.contactapp.R;
  * Use the {@link MessageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MessageFragment extends Fragment {
+public class MessageFragment extends Fragment implements
+        LoaderManager.LoaderCallbacks<Cursor>{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,6 +34,10 @@ public class MessageFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View mRootView;
+    private RecyclerView mRecyclerView;
+    private MessageListAdapter mAdapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -54,11 +67,41 @@ public class MessageFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        //initialize loader here
+        getLoaderManager().initLoader(0, null, this);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mRootView = inflater.inflate(R.layout.fragment_messge, container, false);
 
+        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_message);
 
-        return inflater.inflate(R.layout.fragment_messge, container, false);
+        return mRootView;
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return MessageLoader.newAllMessageInstance(this.getContext());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        MessageListAdapter adapter = new MessageListAdapter(data, getContext());
+        adapter.setHasStableIds(true);
+        mRecyclerView.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity(),
+                LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mRecyclerView.setAdapter(null);
     }
 }

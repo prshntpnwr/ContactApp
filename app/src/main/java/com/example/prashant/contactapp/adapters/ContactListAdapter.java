@@ -27,7 +27,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     public ContactListAdapter(ArrayList<Contacts> ContactList, Context context) {
         this.mContactList = ContactList;
         this.mContext = context;
-        Log.d(TAG, " Movie adapter MovieList " + ContactList.size() + " " + mContactList.size());
+        Log.d(TAG, " Contact adapter ContactList " + ContactList.size() + " " + mContactList.size());
     }
 
     private String getItem(int position) {

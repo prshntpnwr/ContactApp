@@ -28,8 +28,6 @@ public class SmsDetailFragment extends Fragment{
 
     private static String id;
 
-    private static final String Hash_tag = "Hi. Your OTP is: 123456";
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +62,7 @@ public class SmsDetailFragment extends Fragment{
 
     private void sendOtpTask(final String id) {
 
-        editText.setText(Hash_tag);
+        editText.setText(getActivity().getString(R.string.otp_message));
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

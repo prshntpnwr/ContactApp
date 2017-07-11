@@ -1,0 +1,48 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/placeholder"
+    tools:context="com.example.prashant.contactapp.fragments.MessageDetailFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/otp_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="@dimen/detail_toolbar_margin" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/padding"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/otp_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_bottom"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_large" />
+
+        <TextView
+            android:id="@+id/otp_msg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_bottom"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_large" />
+
+        <TextView
+            android:id="@+id/otp_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_bottom"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_small" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

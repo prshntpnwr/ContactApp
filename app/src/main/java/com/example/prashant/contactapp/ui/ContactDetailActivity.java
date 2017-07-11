@@ -21,7 +21,7 @@ public class ContactDetailActivity extends AppCompatActivity {
                     .replace(R.id.contact_detail_container, new ContactDetailFragment())
                     .commit();
 
-            Log.d(TAG, "Transition happened");
+            Log.d(TAG, "Transition to ContactDetailFragment");
         }
     }
 }

@@ -10,7 +10,12 @@
 
     <!--contacts-->
     <dimen name="padding">16dp</dimen>
+    <dimen name="padding_bottom">4dp</dimen>
 
     <dimen name="detail_toolbar_margin">24dp</dimen>
+
+    <!--text-->
+    <dimen name="text_large">24sp</dimen>
+    <dimen name="text_small">12sp</dimen>
 
 </resources>
