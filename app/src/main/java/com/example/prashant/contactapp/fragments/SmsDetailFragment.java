@@ -122,21 +122,27 @@ public class SmsDetailFragment extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Log.d("TAG", "onResponse->success");
-                    saveToDb(view, name, numTo, body);
+
+                    Snackbar.make(view, "OTP Send to " + name + " ... ",
+                            Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
+                    saveToDb(name, numTo, body);
                 } else {
-                    Log.d("TAG", "onResponse->failure");
+                    Log.d("TAG", "onResponse->failure " + response.toString());
+                    Snackbar.make(view, "Error Sending Message",
+                            Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("TAG", "onFailure");
+                Log.d("TAG", " onFailure " + t);
             }
         });
 
     }
 
-    private void saveToDb(View view, String name, String number, String msg) {
+    private void saveToDb(String name, String number, String msg) {
         String date = "11/07/2017";
         String time = "12 pm";
 
@@ -149,9 +155,6 @@ public class SmsDetailFragment extends Fragment {
         values.put(MessageEntry.KEY_TIME, time);
 
         getActivity().getContentResolver().insert(MessageEntry.CONTENT_URI, values);
-
-        Snackbar.make(view, "Sending to " + name + " ...",
-                Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
         Log.d(TAG, "DB ENTRY - " + "id - " + id + " name - " + name + " number - " + number + "OPT - " + msg + " date " + date + " time - " + time);
     }
