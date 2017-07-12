@@ -19,7 +19,7 @@ An Android Application that shows the list of contacts and messages. User can se
 - To check all sent messages move to second tab "Messages" which contain list of contact to whom messages are sent.
 - click on any contact to see details. 
 
-##Used Libraries - 
+### Used Libraries - 
 
 Libraries used in this project are - 
 
