@@ -36,6 +36,12 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
+/***
+ * containing all the functionality of sending otp to contact
+ * used retrofit to post otp message
+ * save all the successfully sent messages to database
+ */
+
 public class SmsDetailFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();

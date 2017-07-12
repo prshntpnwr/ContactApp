@@ -1,12 +1,8 @@
 package com.example.prashant.contactapp.fragments;
 
-
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.Loader;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +11,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.prashant.contactapp.R;
-import com.example.prashant.contactapp.data.MessageLoader;
 import com.example.prashant.contactapp.objects.MessageDetails;
 import com.example.prashant.contactapp.ui.MessageProviderHelper;
 
 /**
- * A simple {@link Fragment} subclass.
+ * shows the message details for a selected message in message tab
  */
 public class MessageDetailFragment extends Fragment {
 
@@ -28,8 +23,6 @@ public class MessageDetailFragment extends Fragment {
 
     private View mRootView;
     private Toolbar mToolbar;
-
-    private String id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +33,7 @@ public class MessageDetailFragment extends Fragment {
 
         setupToolbar();
 
-        id = getActivity().getIntent().getStringExtra("id");
+        String id = getActivity().getIntent().getStringExtra("id");
         Log.d(TAG, "intent receive from adapter is " + id);
         bindViewFromID(id);
 
@@ -70,7 +63,7 @@ public class MessageDetailFragment extends Fragment {
         TextView optTime = (TextView) mRootView.findViewById(R.id.otp_time);
 
         try {
-            MessageDetails messageDetails = MessageProviderHelper.getMovieFromDatabase(getActivity(), id);
+            MessageDetails messageDetails = MessageProviderHelper.getMessageFromDatabase(getActivity(), id);
 
             Log.d(TAG, "Message Detail - " + messageDetails.toString());
 

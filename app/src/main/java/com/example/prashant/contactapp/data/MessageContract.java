@@ -4,6 +4,10 @@ import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+/***
+ * contract class for our database defining uri, string that our user interface will display and
+ * stores. Declare all columns that we will use in our SQlite database to store message details
+ */
 public class MessageContract {
 
     // The "Content authority" is a name for the entire content provider, similar to the

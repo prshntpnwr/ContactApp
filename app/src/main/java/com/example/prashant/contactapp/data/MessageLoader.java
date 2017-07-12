@@ -7,7 +7,7 @@ import android.support.v4.content.CursorLoader;
 import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
 
 /**
- * Helper for loading a list of articles or a single article.
+ * Helper for loading a list of message or a single message.
  */
 public class MessageLoader extends CursorLoader {
 
@@ -34,7 +34,7 @@ public class MessageLoader extends CursorLoader {
         };
 
         int KEY_ID = 0;
-        int KEY_NANME= 1;
+        int KEY_NANME = 1;
         int KEY_NUMBER = 2;
         int KEY_OPT = 3;
         int KEY_DATE = 4;

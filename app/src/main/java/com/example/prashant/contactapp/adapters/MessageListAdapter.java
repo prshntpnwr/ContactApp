@@ -12,17 +12,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.prashant.contactapp.data.MessageContract;
-import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
-import com.example.prashant.contactapp.data.MessageLoader;
-import com.example.prashant.contactapp.objects.Contacts;
 import com.example.prashant.contactapp.R;
-import com.example.prashant.contactapp.ui.ContactDetailActivity;
+import com.example.prashant.contactapp.data.MessageLoader;
 import com.example.prashant.contactapp.ui.MessageDetailActivity;
 
-import java.util.ArrayList;
-
-public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder>{
+/***
+ * Take the message list and populate the views (i.e message tab)
+ */
+public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder> {
 
     private final String TAG = getClass().getSimpleName();
 
@@ -68,7 +65,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     public void onBindViewHolder(MessageListAdapter.ViewHolder holder, int position) {
         holder.name.setText(mCursor.getString(MessageLoader.Query.KEY_NANME));
 
-        holder.time.setText(mCursor.getString(MessageLoader.Query.KEY_DATE)  + " on " +
+        holder.time.setText(mCursor.getString(MessageLoader.Query.KEY_DATE) + " on " +
                 mCursor.getString(MessageLoader.Query.KEY_TIME));
     }
 

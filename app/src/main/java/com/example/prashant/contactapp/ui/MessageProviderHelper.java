@@ -7,9 +7,12 @@ import android.net.Uri;
 import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
 import com.example.prashant.contactapp.objects.MessageDetails;
 
+/**
+ * It returns the message object from database for selected id
+ */
 public class MessageProviderHelper {
 
-    public static MessageDetails getMovieFromDatabase(Activity activity, String ID) {
+    public static MessageDetails getMessageFromDatabase(Activity activity, String ID) {
         MessageDetails message = null;
         Uri contentUri = MessageEntry.CONTENT_URI;
         Cursor c = activity.getContentResolver().query(contentUri, null, null, null, null);

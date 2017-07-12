@@ -7,6 +7,11 @@ import android.util.Log;
 
 import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
 
+/***
+ * Create database here and also manage the version and update operation functionality
+ * in case we have to update the current database version
+ */
+
 public class MessageDbHelper extends SQLiteOpenHelper {
 
     private final String TAG = getClass().getSimpleName();

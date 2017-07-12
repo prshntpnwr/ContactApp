@@ -3,6 +3,9 @@ package com.example.prashant.contactapp.objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/***
+ * Contact object
+ */
 public class Contacts implements Parcelable {
 
     public static final Creator CREATOR = new Creator() {

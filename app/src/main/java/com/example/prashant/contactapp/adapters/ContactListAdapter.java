@@ -11,13 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.prashant.contactapp.objects.Contacts;
 import com.example.prashant.contactapp.R;
+import com.example.prashant.contactapp.objects.Contacts;
 import com.example.prashant.contactapp.ui.ContactDetailActivity;
 
 import java.util.ArrayList;
 
-public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder>{
+/***
+ * Take the contact list and populate the views (i.e contact tab)
+ */
+public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
 
     private final String TAG = getClass().getSimpleName();
 

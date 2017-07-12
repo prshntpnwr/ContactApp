@@ -22,6 +22,9 @@ import com.example.prashant.contactapp.ui.SmsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
+ * use to show contact details(name, number and a floating button to send otp) when user click on a
+ * particular contact,
+ * FAB (floating action button) is used to send otp
  */
 public class ContactDetailFragment extends Fragment {
     private final String TAG = getClass().getSimpleName();
@@ -30,7 +33,6 @@ public class ContactDetailFragment extends Fragment {
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private Toolbar mToolbar;
     private FloatingActionButton fab;
-    private LinearLayoutManager mLayoutManager;
     private ImageView mBackdrop;
 
     public static String id;
@@ -39,13 +41,11 @@ public class ContactDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         mRootView = inflater.inflate(R.layout.fragment_contact_detail, container, false);
 
-//        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_movie_details);
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_tool);
         mToolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mBackdrop = (ImageView) mRootView.findViewById(R.id.backdrop);
 
         fab = (FloatingActionButton) mRootView.findViewById(R.id.fab);
@@ -72,14 +72,12 @@ public class ContactDetailFragment extends Fragment {
         TextView nameView = (TextView) mRootView.findViewById(R.id.detail_user_name);
 
         try {
-            // TODO: can add dynamic backdrop and profile image
             Glide.with(this.getContext())
                     .load(R.drawable.contact_bg)
                     .placeholder(R.color.colorAccent)
                     .error(R.color.colorPrimary)
                     .into(mBackdrop);
 
-            //Todo: can add font style
             nameView.setText(ContactsHelper.getContact(id).getName());
             numView.setText(ContactsHelper.getContact(id).getNumber());
 
@@ -112,8 +110,6 @@ public class ContactDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-//                Snackbar.make(view, "Sending...", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 final Bundle args = new Bundle();
                 args.putString("id", id);
                 Intent intent = new Intent(view.getContext(), SmsActivity.class);

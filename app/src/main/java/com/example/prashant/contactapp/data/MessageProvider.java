@@ -7,11 +7,16 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+
 import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
 
 import static com.example.prashant.contactapp.data.MessageContract.MessageEntry.TABLE_NAME;
 
-public class MessageProvider extends android.content.ContentProvider{
+/***
+ * A content provider manages access to a central repository of data.
+ * build uri here and manage query function (like insert, delete, update)
+ */
+public class MessageProvider extends android.content.ContentProvider {
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private MessageDbHelper mOpenHelper;
@@ -55,12 +60,12 @@ public class MessageProvider extends android.content.ContentProvider{
     @Override
     public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
-        final SQLiteDatabase db_g = mOpenHelper.getReadableDatabase();
+        final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
 
         Cursor retCursor;
         switch (sUriMatcher.match(uri)) {
             case MESSAGE:
-                retCursor = db_g.query(TABLE_NAME,
+                retCursor = db.query(TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -68,7 +73,7 @@ public class MessageProvider extends android.content.ContentProvider{
                         sortOrder);
                 break;
             case MESSAGE_ID:
-                retCursor = db_g.query(TABLE_NAME,
+                retCursor = db.query(TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,

@@ -1,12 +1,15 @@
 package com.example.prashant.contactapp.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.prashant.contactapp.R;
 import com.example.prashant.contactapp.fragments.MessageDetailFragment;
 
+/**
+ * works as container for message details fragment
+ **/
 public class MessageDetailActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();
