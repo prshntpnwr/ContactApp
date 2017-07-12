@@ -13,7 +13,7 @@ public class MessageDbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    static final String DATABASE_NAME = "movies.db";
+    static final String DATABASE_NAME = "messages.db";
 
     public MessageDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,7 +22,8 @@ public class MessageDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_MOVIES_TABLE = "CREATE TABLE " + MessageEntry.TABLE_NAME + "("
-                + MessageEntry.KEY_ID + " INTEGER PRIMARY KEY,"
+                + MessageEntry.KEY_PRIMARY + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + MessageEntry.KEY_ID + " INTEGER,"
                 + MessageEntry.KEY_NAME + " TEXT,"
                 + MessageEntry.KEY_NUMBER + " TEXT,"
                 + MessageEntry.KEY_OPT + " TEXT,"

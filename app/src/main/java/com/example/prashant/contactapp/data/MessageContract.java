@@ -28,6 +28,7 @@ public class MessageContract {
 
         public static final String TABLE_NAME = "message";
 
+        public static final String KEY_PRIMARY = "primary_key";
         public static final String KEY_ID = "id";
         public static final String KEY_NAME = "name";
         public static final String KEY_NUMBER = "number";

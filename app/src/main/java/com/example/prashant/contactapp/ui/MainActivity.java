@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         int mNumofTabs;
 
-        public SectionsPagerAdapter(FragmentManager fm, int NumofTabs) {
+        SectionsPagerAdapter(FragmentManager fm, int NumofTabs) {
             super(fm);
             this.mNumofTabs = NumofTabs;
         }

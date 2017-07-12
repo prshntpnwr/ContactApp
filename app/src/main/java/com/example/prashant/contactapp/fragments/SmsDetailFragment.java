@@ -19,14 +19,11 @@ import com.example.prashant.contactapp.R;
 import com.example.prashant.contactapp.data.MessageContract.MessageEntry;
 import com.example.prashant.contactapp.objects.ContactsHelper;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.TimeZone;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -43,7 +40,6 @@ public class SmsDetailFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
 
-    private View mRootView;
     private Toolbar mToolbar;
     private EditText editText;
     private Button mButton;
@@ -54,7 +50,7 @@ public class SmsDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mRootView = inflater.inflate(R.layout.fragment_sms_detail, container, false);
+        View mRootView = inflater.inflate(R.layout.fragment_sms_detail, container, false);
 
         mToolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
         editText = (EditText) mRootView.findViewById(R.id.sms_field);
@@ -92,8 +88,8 @@ public class SmsDetailFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sendSms(view, id);
-                saveToDb("Tony Stark", "9012168161", editText.getText().toString());
+                sendSms(view, id);
+
             }
         });
     }
@@ -130,9 +126,9 @@ public class SmsDetailFragment extends Fragment {
                 if (response.isSuccessful()) {
                     Log.d("TAG", "onResponse->success");
 
-                    snackBar(view, "OTP Send to " + name + " ... ");
+                    snackBar(view, "OTP Sent to " + name + " ... ");
+                    saveToDb(name, numTo, body);
 
-                    //saveToDb(name, numTo, body);
                 } else {
                     Log.d("TAG", "onResponse->failure " + response.toString());
                     snackBar(view, "Error Sending Message");
