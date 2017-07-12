@@ -114,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Contacts";
+                    return getResources().getString(R.string.contacts);
                 case 1:
-                    return "Messages";
+                    return getResources().getString(R.string.messages);
             }
             return null;
         }

@@ -3,13 +3,16 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contacts">Contacts</string>
+    <string name="messages">Messages</string>
 
     <string name="otp_message">Hi ! Your OTP is : </string>
 
     <string name="sms_hint">Please Type OTP</string>
     <string name="sms_button">Send</string>
+    <string name="number">Number</string>
+
+    <string name="contact_image_description">Contact Background</string>
 
     <string name="ACCOUNT_SID">ACd84519ad2f0af49f0416c0f2615133b7</string>
     <string name="AUTH_TOKEN">f7dc2faaa958db65ba0877f005c8b5d5</string>

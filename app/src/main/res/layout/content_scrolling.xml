@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/activity_horizontal_margin"
@@ -47,8 +46,7 @@
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                tools:text="(123) 456-7890" />
+                android:textColor="@color/primary_text"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,12 +54,12 @@
                 android:layout_below="@id/detail_number"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_text"
                 android:layout_toEndOf="@id/ivContactItem1"
                 android:layout_toRightOf="@id/ivContactItem1"
-                android:text="Home"
+                android:text="@string/number"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#727272" />
+                android:textColor="@color/secondary_text" />
 
         </RelativeLayout>
 
