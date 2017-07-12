@@ -17,7 +17,7 @@ An Android Application that shows the list of contacts and messages. User can se
 - Now click on the FAB (Floating Action Button) to move to Send message activity.
 - Either edit the randomly generated OTP or used the same, Click on Send button to send the message.
 - To check all sent messages move to second tab "Messages" which contain list of contact to whom messages are sent.
-- click on any Contact to see details. 
+- Click on any Contact to see details. 
 
 ### Used Libraries - 
 
