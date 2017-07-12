@@ -17,7 +17,7 @@ An Android Application that shows the list of contacts and messages. User can se
 - Now click on the FAB (Floating Action Button) to move to Send message activity.
 - Either edit the randomly generated OTP or used the same, Click on Send button to send the message.
 - To check all sent messages move to second tab "Messages" which contain list of contact to whom messages are sent.
-- click on any contact to see details. 
+- click on any Contact to see details. 
 
 ### Used Libraries - 
 
@@ -25,6 +25,6 @@ Libraries used in this project are -
 
 - Retrofit - For http connection and sending message.
 - Glide - For loading images.
-- Gson - Used to convert Java Objects into their JSON representation.
+- Gson - Used gson to convert json into java objects
 
 
