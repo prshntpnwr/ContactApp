@@ -1,4 +1,4 @@
-# ContantApp
+# ContactApp
 
 An Android Application that shows the list of contacts and messages. User can send messages and view sent messages details.
 
